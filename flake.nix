@@ -31,6 +31,7 @@
 
         packages = with pkgs; [
           curl
+          git
           wget
           pkg-config
           dbus
