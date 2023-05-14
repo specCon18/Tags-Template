@@ -17,6 +17,9 @@
           glib
           dbus
           openssl_3
+          librsvg
+          cargo
+          rustc
         ];
 
         packages = with pkgs; [
@@ -29,6 +32,9 @@
           gtk3
           libsoup
           webkitgtk
+          librsvg
+          cargo 
+          rustc
         ];
       in
       {
