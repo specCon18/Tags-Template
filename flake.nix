@@ -1,15 +1,23 @@
 {
+  description = "nodejs app";
+
   inputs = {
-    nixpkgs.url = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+    flake-utils.lib.eachDefaultSystem (system: 
       let
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs {
+          inherit system;
 
-        libraries = with pkgs;[
+          overlays = [
+            (final: prev: { nodejs = prev.nodejs-18_x; }) # <== Set desired node version here
+          ];
+        };
+
+        libraries = with pkgs; [
           webkitgtk
           gtk3
           cairo
@@ -17,7 +25,6 @@
           glib
           dbus
           openssl_3
-          librsvg
           cargo
           rustc
         ];
@@ -32,9 +39,11 @@
           gtk3
           libsoup
           webkitgtk
-          librsvg
-          cargo 
+          cargo
           rustc
+          nodejs
+          nodePackages.pnpm
+          nixpkgs-fmt
         ];
       in
       {
