@@ -45,6 +45,7 @@
           nodejs
           nodePackages.pnpm
           nixpkgs-fmt
+          just
         ];
       in
       {
