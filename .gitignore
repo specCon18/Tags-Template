@@ -25,3 +25,6 @@ coverage/
 .devenv*
 devenv.local.nix
 
+# Nix
+resault/
+.direnv/
